@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(rtabmap_ros)
 
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_CUDA_STANDARD 14)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+
+
 # Policy CMP0043 introduced in cmake version 3.0 IGNORES the use of COMPILE_DEFINITIONS suffixed variables, e.g. COMPILE_DEFINITIONS_DEBUG
 # Set to OLD behavior until minimum cmake version >= 2.8.10 (version that COMPILE_DEFINITIONS can be set by generator expressions instead)
 if (POLICY CMP0043)
@@ -34,7 +42,7 @@ find_package(fiducial_msgs)
 # find_package(Boost REQUIRED COMPONENTS system)
 find_package(RTABMap 0.20.22 REQUIRED)
 
-find_package(OpenCV REQUIRED QUIET COMPONENTS core calib3d imgproc highgui stitching photo video OPTIONAL_COMPONENTS aruco xfeatures2d nonfree gpu cudafeatures2d)
+find_package(OpenCV 4.5.4 PATHS "/home/peterpan/local_install/opencv_install/lib/cmake/opencv4" NO_DEFAULT_PATH REQUIRED QUIET COMPONENTS core calib3d imgproc highgui stitching photo video OPTIONAL_COMPONENTS aruco xfeatures2d nonfree gpu cudafeatures2d)
 
 IF(RTABMAP_GUI)
 FIND_PACKAGE(PCL 1.7 REQUIRED QUIET COMPONENTS common io kdtree search surface filters registration sample_consensus segmentation visualization)
